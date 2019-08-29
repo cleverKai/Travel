@@ -6,19 +6,36 @@
         <div class="header-input">
           <span class="iconfont search">&#xe86e;</span>
           输入城市/景点/游玩主题</div>
-        <div class="header-right">城市
+        <div class="header-right">
+          {{this.city}}
           <span class="iconfont arrow-icon">&#xe64a;</span>
         </div>
     </div>
 </template>
 <script>
 export default {
-  name:"Header"
+  name:"Header",
+  data(){
+    return{
+
+    }
+  },
+  props:{
+    city:{
+      type:String,
+      default:"",
+    }
+  }
 }
 </script>
 
 <style lang="css" scoped>
   .header{
+    position: fixed;
+    top:0;
+    left: 0;
+    right:0;
+    z-index: 9;
     display: flex;
     height: 43px;
     background-color: #00bcd4;
