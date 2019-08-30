@@ -1,10 +1,14 @@
 <template>
     <div>
      <Header :city="city"></Header>
+     <div class="wrapper" ref="wrapper">
+      <div class="content">
      <home-swiper :swiperList="swiperList"></home-swiper>
      <home-icons :iconList="iconList"></home-icons>
      <home-recommend :recommend="recommend"></home-recommend>
      <home-weekend :weekend="weekend"></home-weekend>
+     </div>
+     </div>
    </div>
 </template>
 
@@ -15,6 +19,7 @@ import HomeIcons from './components/Icons'
 import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
 import axios from 'axios'
+import Bscroll from 'better-scroll'
 export default {
     data(){
        return{
@@ -29,6 +34,7 @@ export default {
        //数据请求函数
        getHomeInfo(){
          axios.get('/api/index.json').then((res) =>{
+            console.log(res);
             res = res.data;
             if(res.ret && res.data){
                const data = res.data
@@ -42,6 +48,9 @@ export default {
        }   
     },
     mounted(){
+       this.$nextTick(() =>{
+          this.scroll = new Bscroll(this.$refs.wrapper)
+       })
        //挂载完毕过后，进行数据请求
        this.getHomeInfo();
     },
@@ -55,6 +64,16 @@ export default {
 } 
 </script>
 
-<style lang="css">
-    
+<style lang="css" scoped>
+    .wrapper{
+       height: 100vh;
+       overflow: hidden;
+    }
+    .content{
+      overflow: hidden;
+      position: absolute;
+      top: 43px;
+      left: 0;
+      right: 0;
+    }
 </style>
