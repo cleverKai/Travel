@@ -1,8 +1,8 @@
 <template>
     <div class="city">
       <city-header></city-header>
-      <search-city></search-city>
-      <city-list :localcity="localcity" :hostCities="hostCities" :words="words" :cities="cities">
+      <search-city :cities="cities"></search-city>
+      <city-list v-if="isShow" :localcity="localcity" :hostCities="hostCities" :words="words" :cities="cities">
       </city-list>
     </div>
 </template>
@@ -20,6 +20,7 @@ export default {
             cities: {},
             hostCities: [],
             words: [],
+            isShow: true,
         }
     },
     components:{
@@ -41,7 +42,7 @@ export default {
                   this.words = data.words;
                }
             })
-        }
+        },
     },
     mounted(){
         this.getCityInfo()

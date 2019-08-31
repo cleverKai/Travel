@@ -19,11 +19,11 @@
            <div class="title">字母排序</div>
            <div class="word">
               <ul>
-                  <li class="item" v-for="item of words" :key="item.id">{{item.name}}</li>
+                  <li class="item" v-for="item of words" :key="item.id" @click="handleLetterClick">{{item.name}}</li>
               </ul>
            </div>
        </div>
-       <div class="area" v-for="(items , key) of cities " :key="items.id">
+       <div class="area" v-for="(items , key) of cities " :key="key" :ref="key">
            <div class="title">{{key}}</div>
            <div class="Acity">
                <ul>
@@ -41,7 +41,9 @@ import Bscroll from 'better-scroll'
 export default {
     name:"CityList",
     data (){
-        return{}
+        return{
+            letter: "",
+        }
     },
     props:{
        localcity: {
@@ -71,6 +73,22 @@ export default {
        this.$nextTick( () =>{
             this.scroll = new Bscroll(this.$refs.wrapper);
        })
+    },
+    methods:{
+        handleLetterClick (e){
+           this.letter = e.target.innerText
+        }
+    },
+    //侦听器
+    watch:{
+        letter(){
+            // console.log(this.letter)
+            if(this.letter){
+               const element = this.$refs[this.letter][0]
+               this.scroll.scrollToElement(element,300)
+            // console.log(element)
+            }
+        }
     }
 }
 </script>
@@ -97,6 +115,7 @@ export default {
        height: 25px;
        line-height: 25px;
        margin-top: 9px;
+       background-color: #fff;
        margin-left: 10px;
        font-size: 14px;
        border-radius: 5px;
@@ -116,7 +135,7 @@ export default {
         margin-bottom: -1px;
         /* float: left; */
         position: relative;
-        z-index: 10;
+        z-index: 0;
         float: left;
         color: #212121;
    }

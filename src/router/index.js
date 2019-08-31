@@ -9,9 +9,15 @@ export default new Router({
   //添加路由映射
   routes: [
     {
+      //路由重定向
+      path: '',
+      redirect: '/home'
+    },
+    {
       path: '/home',
-      name: 'Home',
+      name:'Home',
       component: Home
+      
     },
     {
       path:'/city',
