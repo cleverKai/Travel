@@ -17,16 +17,15 @@
   </div>
 </template>
 <script>
+import {mapState} from 'vuex'
 export default {
   name: 'Header',
   data() {
     return {}
   },
-  props: {
-    city: {
-      type: String,
-      default: ''
-    }
+  computed: {
+    //将vuex里面的公共数据映射到city的计算属性中
+    ...mapState(['city'])
   }
 }
 </script>
@@ -68,7 +67,8 @@ export default {
   line-height: 32px;
 }
 .header-right {
-  width: 64px;
+  min-width: 52px;
+  padding: 0 5px;
   float: right;
   text-align: center;
   font-size: 15px;

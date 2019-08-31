@@ -4,14 +4,14 @@
        <div class="area">
            <div class="title">当前城市</div>
            <div class="button-list">
-               <div class="button">{{this.localcity}}</div>
+               <div class="button">{{this.city}}</div>
            </div>
        </div>
        <div class="area  ">
            <div class="title">热门城市</div>
            <div class="hostcity">
                <ul>
-                   <li class="item right " v-for="(item, index) of hostCities" :key="item.id">{{item.name}}</li>
+                   <li class="item right " v-for="(item, index) of hostCities" :key="item.id" @click="handleCityClick(item.name)">{{item.name}}</li>
                </ul>
            </div>
        </div>
@@ -27,7 +27,7 @@
            <div class="title">{{key}}</div>
            <div class="Acity">
                <ul>
-                   <li class="item left" v-for="item of items">{{item.name}}</li>
+                   <li class="item left" v-for="item of items" @click="handleCityClick(item.name)">{{item.name}}</li>
                </ul>
            </div>
        </div>
@@ -38,6 +38,7 @@
 
 <script>
 import Bscroll from 'better-scroll'
+import {mapState, mapMutations} from 'vuex'
 export default {
     name:"CityList",
     data (){
@@ -46,10 +47,6 @@ export default {
         }
     },
     props:{
-       localcity: {
-           type: String,
-           default: ''
-       },
        hostCities:{
            type: Array,
            default(){
@@ -77,7 +74,15 @@ export default {
     methods:{
         handleLetterClick (e){
            this.letter = e.target.innerText
-        }
+        },
+        handleCityClick (city){
+            //组件调用store里面的actions方法
+        //    this.$store.commit("changeCity",city)
+           this.changeCity(city)
+           this.$router.push("/")
+        },
+        //将Mutations里面的changeCity方法映射到changeCity
+        ...mapMutations(['changeCity'])
     },
     //侦听器
     watch:{
@@ -89,6 +94,9 @@ export default {
             // console.log(element)
             }
         }
+    },
+    computed: {
+        ...mapState(['city'])
     }
 }
 </script>
@@ -111,7 +119,7 @@ export default {
    }
    .button-list .button{
        text-align: center;
-       width: 50px;
+       width: 70px;
        height: 25px;
        line-height: 25px;
        margin-top: 9px;

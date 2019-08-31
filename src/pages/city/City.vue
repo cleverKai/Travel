@@ -2,7 +2,7 @@
     <div class="city">
       <city-header></city-header>
       <search-city :cities="cities"></search-city>
-      <city-list v-if="isShow" :localcity="localcity" :hostCities="hostCities" :words="words" :cities="cities">
+      <city-list v-if="isShow" :hostCities="hostCities" :words="words" :cities="cities">
       </city-list>
     </div>
 </template>
@@ -16,7 +16,6 @@ export default {
     name:"City",
     data (){
         return{
-            localcity:"",
             cities: {},
             hostCities: [],
             words: [],
@@ -35,7 +34,7 @@ export default {
                res = res.data;
                if(res.ret && res.data){
                   const data = res.data;
-                  this.localcity = data.localcity;
+                //   this.localcity = data.localcity;
                 //   console.log( this.localCity)
                   this.cities = data.cities;
                   this.hostCities = data.hotCities;

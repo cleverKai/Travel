@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store/index'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import './assets/css/reset.css'
 // 解决移动端1像素边框问题
@@ -18,6 +19,7 @@ fastClick.attach(document.body)
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

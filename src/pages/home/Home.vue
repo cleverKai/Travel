@@ -1,6 +1,6 @@
 <template>
     <div>
-     <Header :city="city"></Header>
+     <Header></Header>
      <div class="wrapper" ref="wrapper">
       <div class="content">
      <home-swiper :swiperList="swiperList"></home-swiper>
@@ -23,7 +23,6 @@ import Bscroll from 'better-scroll'
 export default {
     data(){
        return{
-          city: "",
           swiperList: [],
           iconList: [],
           recommend: [],
@@ -38,7 +37,6 @@ export default {
             res = res.data;
             if(res.ret && res.data){
                const data = res.data
-               this.city = data.city;
                this.swiperList = data.swiperList;
                this.iconList = data.iconList;
                this.recommend = data.recommendList;
