@@ -43,6 +43,10 @@ export default {
     },
     activated (){
         window.addEventListener("scroll",this.handleScroll)
+    },
+    //当页面即将被隐藏时，对window对象事件进行解绑
+    deactivated (){
+        window.removeEventListener("scroll",this.handleScroll)
     }
     
 }
@@ -64,6 +68,7 @@ export default {
     }
     .header-fixd{
         position: fixed;
+        z-index: 999;
         top: 0;
         right: 0;
         left: 0;
