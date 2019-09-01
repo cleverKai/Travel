@@ -20,9 +20,11 @@ import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
 import axios from 'axios'
 import Bscroll from 'better-scroll'
+import { mapState } from 'vuex'
 export default {
     data(){
        return{
+          lastCity:'',
           swiperList: [],
           iconList: [],
           recommend: [],
@@ -32,7 +34,7 @@ export default {
     methods:{
        //数据请求函数
        getHomeInfo(){
-         axios.get('/api/index.json').then((res) =>{
+         axios.get('/api/index.json?city=' + this.city).then((res) =>{
             console.log(res);
             res = res.data;
             if(res.ret && res.data){
@@ -45,12 +47,23 @@ export default {
          }) 
        }   
     },
+    computed:{
+       ...mapState(["city"])
+    },
     mounted(){
+       this.lastCity = this.city
        this.$nextTick(() =>{
           this.scroll = new Bscroll(this.$refs.wrapper)
        })
        //挂载完毕过后，进行数据请求
        this.getHomeInfo();
+    },
+    //当页面被重新加载时执行
+    activated (){
+       if(this.lastCity !== this.city){
+            this.lastCity = this.city
+            this.getHomeInfo()
+       }
     },
    components:{
       Header,

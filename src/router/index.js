@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/pages/home/Home'
 import City from '@/pages/city/City'
-Vue.use(Router)
+import Detail from '@/pages/detail/Detail'
 
+Vue.use(Router)
 export default new Router({
   mode: 'history',
   //添加路由映射
@@ -23,6 +24,12 @@ export default new Router({
       path:'/city',
       name: 'City',
       component: City
+    },
+    {
+      //动态路由
+      path: '/detail/:id',
+      name: 'Detail',
+      component: Detail
     }
   ],
 })
