@@ -1,7 +1,7 @@
 <template>
     <div>
         <detail-banner :sightName="sightName" :bannerImg="bannerImg" :gallaryImgs="gallaryImgs"></detail-banner> 
-        <detail-header></detail-header> 
+        <detail-header :headerName="headerName"></detail-header> 
         <div class="content">
              <detail-list :categoryList="categoryList"></detail-list> 
         </div>
@@ -17,6 +17,7 @@ export default {
     name: 'Detail',
     data (){
         return{
+            headerName:"",
             sightName:'',
             bannerImg:'',
             gallaryImgs: [],
@@ -38,7 +39,8 @@ export default {
                 res = res.data
                 if(res.ret && res.data){
                     const data = res.data
-                    // console.log(data)
+                    console.log(data)
+                    this.headerName = data.headerName
                     this.sightName = data.sightName
                     this.bannerImg = data.bannerImg
                     this.gallaryImgs = data.gallaryImgs

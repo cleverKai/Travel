@@ -3,11 +3,8 @@
         <div class="header-abs" @click="goBack" v-show="showAbs">
              <div class="iconfont back-icon">&#xe646;</div>
         </div>
-        <div class="header-fixd" :style="opacityStyle" v-show="!showAbs">
-            景点详情
-            <router-link to="/">
-                <div class="iconfont header-back">&#xe646;</div>
-            </router-link>
+        <div class="header-fixed" :style="opacityStyle" v-show="!showAbs">
+            {{this.headerName}}
         </div>
     </div>
 </template>
@@ -15,6 +12,12 @@
 <script>
 export default {
     name:"DetailHeader",
+    props:{
+        headerName:{
+            type: String,
+            default: "",
+        }
+    },
     data (){
         return{
             showAbs: true,
@@ -44,7 +47,7 @@ export default {
     activated (){
         window.addEventListener("scroll",this.handleScroll)
     },
-    //当页面即将被隐藏时，对window对象事件进行解绑
+    // 当页面即将被隐藏时，对window对象事件进行解绑
     deactivated (){
         window.removeEventListener("scroll",this.handleScroll)
     }
@@ -57,16 +60,17 @@ export default {
         position: absolute;
         top: 9px;
         left: 4px;
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         background:rgba(0, 0, 0, .5);
     }
     .back-icon{
         color: #fff;
         font-size: 25px;
+        line-height:30px;
     }
-    .header-fixd{
+    .header-fixed{
         position: fixed;
         z-index: 999;
         top: 0;

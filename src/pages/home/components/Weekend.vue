@@ -46,22 +46,23 @@ export default {
         opacity: 1;
     }
     .item .item-title{
-        overflow: hidden;
         margin-top: 10px;
         margin-left: 10px;
         color: #212121;
         font-size: 15px;
+        height: 20px;
         line-height: 20px;
+        overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
     }
     .item .item-desc{
-        overflow: hidden;
         margin-left: 10px;
         height: 20px;
         color: #616161;
         font-size: 12px;
         line-height: 20px;
+        overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
     }

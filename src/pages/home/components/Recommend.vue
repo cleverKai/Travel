@@ -2,7 +2,7 @@
 <div>
     <div class="title">热销推荐</div>
     <ul>
-        <router-link class="item" v-for="item of recommend" :key="item.id" tag="li" :to="'detail/'+ item.id ">
+        <li class="item" v-for="item of recommend" :key="item.id" @click="goDetail(item.id)">
             <img class="item-img" :src="item.imgUrl" alt="">
             <div class="tip">随买随用</div>
             <div class="item-info">
@@ -11,7 +11,7 @@
                 <div class="price">￥<span>{{item.price}}</span></div>
                 <p class="item-desc">{{item.desc}}</p>
             </div>
-        </router-link>
+        </li>
     </ul>
     </div>
 </template>
@@ -31,6 +31,11 @@ export default {
             default (){
                 return []
             }
+        }
+    },
+    methods:{
+        goDetail (id){
+            this.$router.push('detail/' + id )
         }
     }
 

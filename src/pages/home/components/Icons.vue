@@ -18,9 +18,11 @@ export default {
   data () {
     return {
       swiperOption: {
-        pagination: '.swiper-pagination',
-        observer:true,
-        observeParents:true,
+       pagination:'.swiper-pagination',
+       autoplayDisableOnInteraction : false,
+       disableOnInteraction: true,
+       observer:true,//修改swiper自己或子元素时，自动初始化swiper
+       observeParents:true,//修改swiper的父元素时，自动初始化swiper,
       },
     }
   },
@@ -75,5 +77,8 @@ export default {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.swiper{
+  width: 100%;
 }
 </style>
